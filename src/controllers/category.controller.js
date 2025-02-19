@@ -93,7 +93,9 @@ exports.deleteCategory = async (req, res) => {
 
     await Category.updateMany({ parent: id }, { parent: category.parent });
     await Category.findByIdAndDelete(id);
-    res.status(204).send();
+    res.status(204).json({
+        "message": "Category deleted successfully"
+      });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
